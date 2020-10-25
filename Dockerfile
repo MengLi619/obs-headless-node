@@ -48,6 +48,7 @@ RUN apt-get update && \
     libgrpc6 \
     protobuf-compiler-grpc \
     x11vnc \
+    libnvidia-encode-450 \
     xserver-xorg-video-dummy \
     xserver-xorg-input-void
 
