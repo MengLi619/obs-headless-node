@@ -1,0 +1,44 @@
+{
+  "scenes": [
+    {
+      "id": "scene1",
+      "sources": [
+        {
+          "id": "source1",
+          "type": "MediaSource",
+          "url": "rtmp://host.docker.internal/live/source1"
+        }
+      ]
+    },
+    {
+      "id": "scene2",
+      "sources": [
+        {
+          "id": "source2",
+          "type": "MediaSource",
+          "url": "rtmp://host.docker.internal/live/source2"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "server": "rtmp://host.docker.internal/live",
+    "key": "output",
+    "videoHWDecode": false,
+    "videoHWEncode": false,
+    "videoGpuConversion": true,
+    "videoBitrateKbps": 5000,
+    "videoKeyintSec": 1,
+    "videoRateControl": "CBR",
+    "videoWidth": 1280,
+    "videoHeight": 720,
+    "videoFpsNum": 25000,
+    "videoFpsDen": 1000,
+    "audioSampleRate": 44100,
+    "audioBitrateKbps": 128,
+    "preset": "fast",
+    "profile": "main",
+    "tune": "zerolatency",
+    "x264opts": ""
+  }
+}
