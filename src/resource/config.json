@@ -2,21 +2,27 @@
   "scenes": [
     {
       "id": "scene1",
+      "name": "scene1",
       "sources": [
         {
           "id": "source1",
+          "name": "source1",
           "type": "MediaSource",
-          "url": "rtmp://host.docker.internal/live/source1"
+          "url": "rtmp://host.docker.internal/live/source1",
+          "previewUrl": "rtmp://host.docker.internal/live/source1"
         }
       ]
     },
     {
       "id": "scene2",
+      "name": "scene2",
       "sources": [
         {
           "id": "source2",
+          "name": "source2",
           "type": "MediaSource",
-          "url": "rtmp://host.docker.internal/live/source2"
+          "url": "rtmp://host.docker.internal/live/source2",
+          "previewUrl": "rtmp://host.docker.internal/live/source2"
         }
       ]
     }

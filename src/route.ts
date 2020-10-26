@@ -14,4 +14,9 @@ export const routes: Route[] = [
     route: `${version}/switch/:sceneId`,
     action: obsController.switch.bind(obsController),
   },
+  {
+    method: 'post',
+    route: `${version}/restart`,
+    action: obsController.restart.bind(obsController),
+  },
 ];

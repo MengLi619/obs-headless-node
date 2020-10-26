@@ -2,11 +2,12 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as obs from 'obs-node';
 import { TransitionType } from 'obs-node';
+import { scenes } from '../common/config';
 
 export const obsController = new class ObsController {
 
   public getScenes(req: Request, res: Response) {
-    res.json(obs.getScenes());
+    res.json(scenes);
   }
 
   public switch(req: Request, res: Response) {
@@ -25,6 +26,25 @@ export const obsController = new class ObsController {
 
     try {
       obs.switchToScene(sceneId, transitionType, transitionMs);
+      res.status(StatusCodes.OK).end();
+    } catch (e) {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: e.message });
+    }
+  }
+
+  public restart(req: Request, res: Response) {
+    req.checkBody('sceneId', 'sceneId is not valid').isString().notEmpty();
+    req.checkBody('sourceId', 'sourceId is not valid').isString().notEmpty();
+    const errors = req.validationErrors();
+    if (errors) {
+      res.status(StatusCodes.BAD_REQUEST).json({ message: errors });
+      return;
+    }
+
+    const sceneId = req.body.sceneId;
+    const sourceId = req.body.sourceId;
+    try {
+      obs.restartSource(sceneId, sourceId);
       res.status(StatusCodes.OK).end();
     } catch (e) {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: e.message });
