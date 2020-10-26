@@ -3,12 +3,17 @@
 This project uses [obs-studio](https://github.com/obsproject/obs-studio) to switch input streams in the backend.
 Use [obs-node](https://github.com/MengLi619/obs-node) as the node wrapper of obs-studio.
 
-## Run project locally
+## Run locally
 ```shell script
 npm run build && npm start
 ```
 
-## GPU (Nvidia) docker installation
+## Run in docker
+```shell script
+docker run --name obs-headless-node --rm -p 8080:8080 -v "$(pwd)/config.json":/node-app/dist/resource/config.json registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
+```
+
+## Hardware (GPU) aaccelerate installation
 1. Install nvidia-docker
     ```shell script
     distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
@@ -20,7 +25,7 @@ npm run build && npm start
     ```
 2. Run docker with nvidia-runtime
     ```shell script
-    docker run --rm --gpus all -p 8080:8080 -v "$(pwd)/config.json":/node-app/dist/resource/config.json registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
+    docker run --name obs-headless-node --rm --gpus all -p 8080:8080 -v "$(pwd)/config.json":/node-app/dist/resource/config.json registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
     ```
     
 
