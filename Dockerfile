@@ -42,10 +42,6 @@ RUN apt-get update && \
     libxcb-xfixes0-dev \
     libx11-xcb-dev \
     libxcb1-dev \
-    libgrpc++-dev \
-    libgrpc++1 \
-    libgrpc-dev \
-    libgrpc6 \
     protobuf-compiler-grpc \
     x11vnc \
     libnvidia-encode-450 \
