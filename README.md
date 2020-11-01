@@ -10,11 +10,21 @@ npm run build && npm start
 
 ## Run in docker
 ```shell script
-docker run --name obs-headless-node --rm -p 8080:8080 -v "$(pwd)/config.json":/node-app/dist/resource/config.json registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
+docker run \
+  --name obs-headless-node \
+  --rm -p 8080:8080 \
+  -v "$(pwd)/config.json":/node-app/dist/resource/config.json \
+  registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
 ```
 
-## Hardware (GPU) aaccelerate installation
-1. Install nvidia-docker
+## Hardware (Nvidia GPU) accelerate installation
+**Note:** We only test the GPU version in ubuntu 20.04 and cuda 11.1, and only one GPU in one machine.
+Other environment should also work with some small change, but we never test it. 
+1. Install cuda driver    
+https://developer.nvidia.com/cuda-downloads
+2. Install docker    
+https://docs.docker.com/engine/install/ubuntu
+3. Install nvidia-docker2
     ```shell script
     distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
     curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
@@ -23,9 +33,22 @@ docker run --name obs-headless-node --rm -p 8080:8080 -v "$(pwd)/config.json":/n
     sudo apt-get install -y nvidia-docker2
     sudo systemctl restart docker
     ```
-2. Run docker with nvidia-runtime
+4. Install xorg service, which will run the Xorg from host to support GPU accessibility.
     ```shell script
-    docker run --name obs-headless-node --rm --gpus all -p 8080:8080 -v "$(pwd)/config.json":/node-app/dist/resource/config.json registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
+    bash install-xorg-service.sh
+    ```
+5. Run docker with nvidia runtime
+    ```shell script
+    docker run -it \
+        --name obs-headless-node \
+        --privileged \
+        --runtime nvidia \
+        --rm \
+        -p 8080:8080 \
+        -e DISPLAY=:99 \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v "$(pwd)/config.json":/node-app/dist/resource/config.json \
+        registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest-gpu
     ```
     
 

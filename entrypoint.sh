@@ -1,5 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-Xorg -noreset +extension GLX +extension RANDR +extension RENDER -config /etc/xorg.conf $DISPLAY &
+if [[ -z "$NVIDIA_VISIBLE_DEVICES" ]]; then
+  Xorg -noreset +extension GLX +extension RANDR +extension RENDER -config /etc/xorg.conf $DISPLAY &
+fi
 
 exec "$@"

@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM nvidia/cudagl:11.1-runtime-ubuntu20.04
 
 # Install obs dependencies
 ENV DEBIAN_FRONTEND=noninteractive
@@ -41,21 +41,22 @@ RUN apt-get update && \
     libxcb-randr0-dev \
     libxcb-xfixes0-dev \
     libx11-xcb-dev \
-    libxcb1-dev \
-    xserver-xorg-video-dummy \
-    xserver-xorg-input-void
+    libxcb1-dev
+
+# Git, Node
+RUN apt-get install -y git nodejs npm
 
 # Setting local time
 RUN apt-get install -y tzdata && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo Asia/Shanghai > /etc/timezone
 
-# Git, Node
-RUN apt-get install -y git nodejs npm
+# Nvidia env
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES all
 
-# Xorg
-COPY xorg.conf /etc/xorg.conf
-ENV DISPLAY :99
+# Fix libvdpau_nvidia.so search path
+RUN ln -s /usr/lib/x86_64-linux-gnu/libvdpau_nvidia.so.1 /usr/lib/x86_64-linux-gnu/libvdpau_nvidia.so
 
 # Copy code
 WORKDIR /node-app
