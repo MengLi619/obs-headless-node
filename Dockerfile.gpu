@@ -1,47 +1,50 @@
 FROM nvidia/cudagl:11.1-runtime-ubuntu20.04
 
-# Install obs dependencies
 ENV DEBIAN_FRONTEND=noninteractive
+
+# Obs dependencies
 RUN apt-get update && \
     apt-get install -y \
-    libmbedtls-dev \
-    libasound2-dev \
-    libavcodec-dev \
-    libavdevice-dev \
-    libavfilter-dev \
-    libavformat-dev \
-    libavutil-dev \
-    libcurl4-openssl-dev \
-    libfdk-aac-dev \
-    libfontconfig-dev \
-    libfreetype6-dev \
-    libgl1-mesa-dev \
-    libjack-jackd2-dev \
-    libjansson-dev \
-    libluajit-5.1-dev \
-    libpulse-dev \
-    libqt5x11extras5-dev \
-    libspeexdsp-dev \
-    libswresample-dev \
-    libswscale-dev \
-    libudev-dev \
-    libv4l-dev \
-    libvlc-dev \
-    libx11-dev \
-    libx264-dev \
-    libxcb-shm0-dev \
-    libxcb-xinerama0-dev \
-    libxcomposite-dev \
-    libxinerama-dev \
+    libmbedtls12 \
+    libasound2 \
+    libavcodec58 \
+    libavdevice58 \
+    libavfilter7 \
+    libavformat58 \
+    libavutil56 \
+    libcurl4 \
+    openssl \
+    libfdk-aac1 \
+    libfontconfig1 \
+    libfreetype6 \
+    libgl1-mesa-glx \
+    libjack-jackd2-0 \
+    libjansson4 \
+    libluajit-5.1-2 \
+    libpulse0 \
+    libqt5x11extras5 \
+    libspeexdsp1 \
+    libswresample3 \
+    libswscale5 \
+    libudev1 \
+    libv4l-0 \
+    libvlc5 \
+    libx11-6  \
+    libx264-155 \
+    libxcb-shm0 \
+    libxcb-xinerama0 \
+    libxcomposite1 \
+    libxinerama1 \
     pkg-config \
-    python3-dev \
-    qtbase5-dev \
-    libqt5svg5-dev \
+    python3 \
+    libqt5core5a \
+    libqt5svg5 \
     swig \
-    libxcb-randr0-dev \
-    libxcb-xfixes0-dev \
-    libx11-xcb-dev \
-    libxcb1-dev
+    libxcb-randr0 \
+    libxcb-xfixes0 \
+    libx11-xcb1 \
+    libxcb1 \
+    libsrt1
 
 # Git, Node
 RUN apt-get install -y git nodejs npm
