@@ -1,4 +1,4 @@
-name: main
+name: build-gpu
 
 on:
   push:
@@ -14,8 +14,9 @@ jobs:
     - name: Docker build & publish
       uses: docker/build-push-action@v1
       with:
+        dockerfile: ./Dockerfile.gpu
         username: "${{ secrets.DOCKER_USERNAME }}"
         password: "${{ secrets.DOCKER_PASSWORD }}"
         registry: registry.cn-beijing.aliyuncs.com
         repository: mengli/obs-headless-node
-        tags: latest
+        tags: latest-gpu
