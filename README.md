@@ -9,13 +9,21 @@ npm run build && npm start
 ```
 
 ## Run in docker
-```shell script
-docker run \
-  --name obs-headless-node \
-  --rm -p 8080:8080 \
-  -v "$(pwd)/config.json":/node-app/dist/resource/config.json \
-  registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
-```
+1. Create config.json
+    ```shell script
+    wget https://raw.githubusercontent.com/MengLi619/obs-headless-node/master/src/resource/config.json
+    ```
+2. Edit config.json with real environment
+3. Run in docker
+    ```shell script
+    docker run \
+      --name obs-headless-node \
+      -d \
+      --rm \ 
+      -p 8080:8080 \
+      -v "$(pwd)/config.json":/node-app/dist/resource/config.json \
+      registry.cn-beijing.aliyuncs.com/mengli/obs-headless-node:latest
+    ```
 
 ## Hardware (Nvidia GPU) accelerate installation
 **Note:** We only test the GPU version in ubuntu 20.04 and cuda 11.1, and only one GPU in one machine.
@@ -35,6 +43,7 @@ https://docs.docker.com/engine/install/ubuntu
     ```
 4. Install xorg service, which will run the Xorg from host to support GPU accessibility.
     ```shell script
+    wget https://raw.githubusercontent.com/MengLi619/obs-headless-node/master/install-xorg-service.sh
     bash install-xorg-service.sh
     ```
 5. Run docker with nvidia runtime
