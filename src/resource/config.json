@@ -49,7 +49,7 @@
       "bitrateKbps": 2000,
       "keyintSec": 1,
       "rateControl": "CBR",
-      "preset": "ultrafast",
+      "preset": "medium",
       "profile": "main",
       "tune": "zerolatency"
     },
