@@ -3,7 +3,7 @@ import { routes } from './route';
 import { PORT } from './common/constant';
 import * as obs from 'obs-node';
 import { SourceType } from 'obs-node';
-import { obsSettings, scenes } from './common/config';
+import { dsk, obsSettings, scenes } from './common/config';
 
 const httpOptions = {
   routes: routes,
@@ -16,6 +16,9 @@ scenes.forEach(scene => {
   scene.sources.forEach(source => {
     obs.addSource(scene.id, source.id, source.type as SourceType, source.url);
   });
+});
+dsk.forEach(d => {
+  obs.addDSK(d.id, d.position as obs.Position, d.url, d.left, d.top, d.width, d.height);
 });
 
 createHttpServer(httpOptions)

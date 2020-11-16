@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "express-validator": "^5.3.1",
     "http-status-codes": "^2.1.4",
-    "obs-node": "git+https://github.com/MengLi619/obs-node.git#v1.0.23"
+    "obs-node": "git+https://github.com/MengLi619/obs-node.git#v1.0.24"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
