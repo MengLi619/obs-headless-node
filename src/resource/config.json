@@ -27,6 +27,17 @@
       ]
     }
   ],
+  "dsk": [
+    {
+      "id": "logo",
+      "url": "logo.png",
+      "position": "top-left",
+      "top": 100,
+      "left": 100,
+      "width": 256,
+      "height": 256
+    }
+  ],
   "settings": {
     "video": {
       "baseWidth": 1280,
