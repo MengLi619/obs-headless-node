@@ -3,14 +3,14 @@ import { routes } from './route';
 import { PORT } from './common/constant';
 import * as obs from 'obs-node';
 import { SourceType } from 'obs-node';
-import { dsk, obsSettings, scenes } from './common/config';
+import { dsk, settings, scenes } from './common/config';
 
 const httpOptions = {
   routes: routes,
   port: Number(PORT)
 };
 
-obs.startup(obsSettings);
+obs.startup(settings);
 scenes.forEach(scene => {
   obs.addScene(scene.id);
   scene.sources.forEach(source => {

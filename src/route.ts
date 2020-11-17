@@ -6,6 +6,11 @@ const version = '/v1';
 export const routes: Route[] = [
   {
     method: 'get',
+    route: `${version}/output`,
+    action: obsController.getOutput.bind(obsController),
+  },
+  {
+    method: 'get',
     route: `${version}/scenes`,
     action: obsController.getScenes.bind(obsController),
   },
