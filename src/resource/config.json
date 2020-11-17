@@ -30,7 +30,7 @@
   "dsk": [
     {
       "id": "logo",
-      "url": "logo.png",
+      "url": "https://httpbin.org/image/png",
       "position": "top-left",
       "top": 100,
       "left": 100,
@@ -38,6 +38,10 @@
       "height": 256
     }
   ],
+  "output": {
+    "url": "rtmp://host.docker.internal/live/output",
+    "previewUrl": "rtmp://host.docker.internal/live/output"
+  },
   "settings": {
     "video": {
       "baseWidth": 1280,

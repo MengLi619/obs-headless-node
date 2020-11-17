@@ -2,12 +2,16 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as obs from 'obs-node';
 import { TransitionType } from 'obs-node';
-import { scenes } from '../common/config';
+import { scenes, output } from '../common/config';
 
 export const obsController = new class ObsController {
 
   public getScenes(req: Request, res: Response) {
     res.json(scenes);
+  }
+
+  public getOutput(req: Request, res: Response) {
+    res.json(output);
   }
 
   public switch(req: Request, res: Response) {
